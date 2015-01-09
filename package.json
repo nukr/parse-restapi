@@ -1,0 +1,27 @@
+{
+  "name": "parse-restapi",
+  "version": "0.0.1",
+  "description": "Parse.com Rest Api for nodejs",
+  "main": "index.js",
+  "dependencies": {
+    "keymirror": "^0.1.1",
+    "request": "^2.51.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nukr/parse-restapi.git"
+  },
+  "keywords": [
+    "nodejs"
+  ],
+  "author": "nukr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nukr/parse-restapi/issues"
+  },
+  "homepage": "https://github.com/nukr/parse-restapi"
+}
