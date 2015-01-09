@@ -45,15 +45,17 @@ Parse.prototype.classes = function (className) {
         return new Error('className dose not exist');
     }
 
+    var that = this;
+
     return {
-        get: function () {
-            console.log(className);
-            console.log('i am get()');
+        get: function (objectId, callback) {
+            that.options.url = that.parseApi + '/classes/' + className + '/' + objectId;
+            request(that.options, callback)
         },
 
-        getAll: function () {
-            console.log(className);
-            console.log('i am getAll()');
+        getAll: function (callback) {
+            that.options.url = that.parseApi + '/classes/' + className;
+            request(that.options, callback)
         },
 
         create: function () {
@@ -77,8 +79,8 @@ Parse.prototype.classes = function (className) {
 Parse.prototype.users = function () {
     var that = this
     return {
-        login: function (username, password, callback) {
-            that.options.url = that.parseApi + '/login?username=' + username + '&password=' + password
+        login: function (userData, callback) {
+            that.options.url = that.parseApi + '/login?username=' + userData.username + '&password=' + userData.password
             request(that.options, callback);
         },
 
@@ -86,6 +88,44 @@ Parse.prototype.users = function () {
             that.options.url = that.parseApi + '/requestPasswordReset';
             that.options.method = 'POST';
             that.options.qs = {email: email};
+            request(that.options, callback);
+        },
+
+        create: function (userData, callback) {
+            that.options.method = 'POST';
+            that.options.url = that.parseApi + '/users';
+            that.options.qs = userData;
+            request(that.options, callback);
+        },
+
+        get: function (objectId, callback) {
+            that.options.url = that.parseApi + '/users/' + objectId;
+            request(that.options, callback);
+        },
+
+        verify: function (sessToken, callback) {
+            that.options.url = that.parseApi + '/users/me'
+            that.options.headers['X-Parse-Session-Token'] = sessToken;
+            request(that.options, callback);
+        },
+
+        getAll: function (callback) {
+            that.options.url = that.parseApi + '/users';
+            request(that.options, callback);
+        },
+
+        update: function (userData, callback) {
+            that.options.method = 'PUT';
+            that.options.url = that.parseApi + '/users/' + userData.objectId;
+            that.options.qs = userData;
+            that.options.headers['X-Parse-Session-Token'] = sessToken;
+            request(that.options, callback);
+        },
+
+        del: function (userData, callback) {
+            that.options.method = 'DELETE';
+            that.options.url = that.parseApi + '/users/' + objectId;
+            that.options.headers['X-Parse-Session-Token'] = sessToken;
             request(that.options, callback);
         }
     }
