@@ -1,5 +1,7 @@
 ## Parse Rest Api
 
+v0.0.2
+
 ## Installation
 
 npm install parse-restapi
