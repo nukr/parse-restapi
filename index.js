@@ -23,15 +23,6 @@ var buildinService = keyMirror({
     "jobs": null
 });
 
-var callback = function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-        var info = JSON.parse(body);
-        console.log(info);
-    } else {
-        console.log(body);
-    }
-};
-
 /**
  * constructor
  *
@@ -86,16 +77,16 @@ Parse.prototype.classes = function (className) {
 Parse.prototype.users = function () {
     var that = this
     return {
-        login: function (username, password) {
+        login: function (username, password, callback) {
             that.options.url = that.parseApi + '/login?username=' + username + '&password=' + password
             request(that.options, callback);
         },
 
-        requestPasswordReset: function (email) {
-            options.url = this.parseApi + '/requestPasswordReset';
-            options.method = 'POST';
-            options.qs = {email: email};
-            request(options, callback);
+        requestPasswordReset: function (email, callback) {
+            that.options.url = that.parseApi + '/requestPasswordReset';
+            that.options.method = 'POST';
+            that.options.qs = {email: email};
+            request(that.options, callback);
         }
     }
 }
