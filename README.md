@@ -2,12 +2,12 @@
 
 ## Installation
 
-npm install node-parse-rest
+npm install parse-restapi
 
 ## Usage
 
 ```
-var parse = require('node-parse-rest')
+var parse = require('parse-restapi')
 parse.classes('Products').get();
 parse.classes('Products').getAll();
 parse.classes('Products').create();
