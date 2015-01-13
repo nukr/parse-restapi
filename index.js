@@ -58,6 +58,22 @@ Parse.prototype.classes = function (className) {
             request(that.options, callback)
         },
 
+        getProduct: function (objectId, callback) {
+          that.options.url =
+            that.parseApi +
+            '/classes/' +
+            className +
+            '/' +
+            objectId +
+            '?include=seller';
+          request(that.options, callback);
+        },
+
+        getLike: function (callback) {
+          that.options.url = that.parseApi + '/classes/' + className + '?include=likedUser';
+          request(that.options, callback);
+        },
+
         create: function () {
             console.log(className);
             console.log('i am create()');
