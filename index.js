@@ -74,6 +74,11 @@ Parse.prototype.classes = function (className) {
           request(that.options, callback);
         },
 
+        getComment: function (callback) {
+          that.options.url = that.parseApi + '/classes/' + className + '?include=commenter';
+          request(that.options, callback);
+        },
+
         create: function () {
             console.log(className);
             console.log('i am create()');
